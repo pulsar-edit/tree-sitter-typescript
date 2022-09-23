@@ -1,0 +1,34 @@
+name: Prebuilt binary for windows
+on:
+  - push
+jobs:
+  Test:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version:
+          - 14
+          - 16
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Install Python
+        uses: actions/setup-python@v1
+        with:
+          version: 3
+
+     - name: Add msbuild to PATH
+       uses: microsoft/setup-msbuild@v1.1
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Pre-build
+        run: npx prebuildify --strip --all
