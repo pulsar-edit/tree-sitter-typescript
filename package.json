@@ -14,14 +14,17 @@
   "author": "Max Brunsfeld",
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.14.0"
+    "nan": "^2.14.0",
+    "node-gyp-build": "^4.5.0"
   },
   "main": "./bindings/node",
   "devDependencies": {
+    "prebuildify": "^5.0.1",
     "tree-sitter-cli": "^0.20.6",
     "tree-sitter-javascript": "github:tree-sitter/tree-sitter-javascript#fdeb68a"
   },
   "scripts": {
+    "install": "node-gyp-build",
     "build": "npm run build-typescript && npm run build-tsx",
     "build-typescript": "cd typescript && npx tree-sitter generate --no-bindings",
     "build-tsx": "cd tsx && npx tree-sitter generate --no-bindings",
