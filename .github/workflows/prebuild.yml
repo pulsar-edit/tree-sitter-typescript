@@ -35,4 +35,4 @@ jobs:
         run: npm install
 
       - name: Pre-build
-        run: npx prebuildify --strip --all
+        run: npx prebuildify --strip -t 14.16.0
