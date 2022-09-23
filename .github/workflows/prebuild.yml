@@ -29,6 +29,9 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
 
+      - name: "Sets to use msbuild"
+        run: npm config set msvs_version 2022
+
       - name: Install dependencies
         run: npm install
 
