@@ -2,7 +2,7 @@ name: Prebuilt binary for windows
 on:
   - push
 jobs:
-  Test:
+  prebuild:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: windows-latest
     strategy:
