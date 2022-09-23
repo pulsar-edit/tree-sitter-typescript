@@ -1,8 +1,8 @@
-name: build
+name: prebuild
 on:
   push:
 jobs:
-  build:
+  prebuild:
     name: "Prebuild binaries"
     runs-on: windows-latest
     strategy:
@@ -26,11 +26,10 @@ jobs:
         with:
           version: 3
 
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
-
-      - name: "Sets to use msbuild"
-        run: npm config set msvs_version 2022
+      - name: Install C++ compiler
+        uses: crazy-max/ghaction-chocolatey@v2
+        with:
+          args: visualstudio2019-workload-vctools -y
 
       - name: Install dependencies
         run: npm install
